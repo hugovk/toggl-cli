@@ -202,17 +202,17 @@ def get_entries(ctx, use_reports, **conditions):
 
 
 # TODO: [Feature/Low] Implement other filtrations for the Report's call
-@cli.command('ls', short_help='list a time entries')
-@click.option('--use-reports', is_flag=True, help='Will use different API call that will fetch all time entries.')
+@cli.command('ls', short_help='list time entries')
+@click.option('--use-reports', is_flag=True, help='Use different API call to fetch all time entries.')
 @click.option('--start', '-s', type=types.DateTimeType(),
-              help='Defines start of a date range to filter the entries by.')
-@click.option('--stop', '-p', type=types.DateTimeType(), help='Defines stop of a date range to filter the entries by.')
-@click.option('--today', '-t', is_flag=True, help='Scopes the time to the current day')
+              help='Start of a date range to filter entries by.')
+@click.option('--stop', '-p', type=types.DateTimeType(), help='End of a date range to filter entries by.')
+@click.option('--today', '-t', is_flag=True, help='Scopes the time to the current day.')
 @click.option('--project', '-o', type=types.ResourceType(api.Project),
               help='Filters the entries by project. Can be ID or name of the project.', )
-@click.option('--tags', '-a', type=types.SetType(), help='Filters the entries by list of tags delimited with \',\'')
+@click.option('--tags', '-a', type=types.SetType(), help='Filters the entries by list of tags delimited by \',\'.')
 @click.option('--fields', '-f', type=types.FieldsType(api.TimeEntry), default='description,duration,start,stop',
-              help='Defines a set of fields of time entries, which will be displayed. It is also possible to modify '
+              help='Defines fields of time entries to display, delimited by \',\'. It is also possible to modify '
                    'default set of fields using \'+\' and/or \'-\' characters. Supported values: '
                    + types.FieldsType.format_fields_for_help(api.TimeEntry))
 @click.pass_context
