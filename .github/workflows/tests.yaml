@@ -10,22 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      max-parallel: 1
+      fail-fast: false
       matrix:
         python-version: [3.7, 3.8, 3.9, 3.10]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
 
       - name: Use Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('test-requirements.txt') }}-${{ hashFiles('requirements.txt') }}
