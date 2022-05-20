@@ -1,12 +1,9 @@
 name: Tests
 
-on:
-  push:
-    branches:
-      - 'master'
-  pull_request:
-    branches:
-      - '**'
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  FORCE_COLOR: 1
 
 jobs:
   python:
